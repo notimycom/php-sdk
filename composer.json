@@ -1,0 +1,21 @@
+{
+    "name": "notimy/php-sdk",
+    "description": "Notimy SDK for PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Notimy\\PhpSdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "krzysztofzylka",
+            "email": "krzysztofzylka@yahoo.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4"
+    }
+}
