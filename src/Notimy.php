@@ -13,6 +13,8 @@ class Notimy
      */
     public static $API_URL = 'https://notimy.com';
 
+    private array $priorityLevels = ['info', 'warn', 'error', 'critical'];
+
     /**
      * Notimy authorization token
      * @var string
@@ -36,13 +38,25 @@ class Notimy
      * @return mixed
      * @throws Exception
      */
-    public function sendNotification(string $streamKey, string $title, string $body): mixed
+    public function sendNotification(
+        string $streamKey,
+        string $title,
+        string $body,
+        string $priority = 'info',
+        array $tags = []
+    ): mixed
     {
+        if (!in_array($priority, $this->priorityLevels)) {
+            throw new Exception("Invalid priority level: " . $priority);
+        }
+
         $url = self::$API_URL . '/api/notifications/add/' . $streamKey;
 
         $data = [
             'title' => $title,
-            'body'  => $body
+            'body'  => $body,
+            'priority' => $priority,
+            'tags' => $tags
         ];
 
         $ch = curl_init($url);
@@ -59,8 +73,6 @@ class Notimy
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
         curl_close($ch);
-
-        var_dump($response, $statusCode, $url);
 
         if ($statusCode === 200) {
             return json_decode($response, true);
