@@ -74,7 +74,7 @@ class Notimy
 
         curl_close($ch);
 
-        if ($statusCode === 200) {
+        if ($statusCode === 201) {
             return json_decode($response, true);
         } else {
             throw new Exception("Error sending notification: " . $response);
