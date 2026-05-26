@@ -50,7 +50,7 @@ class Notimy
             throw new Exception("Invalid priority level: " . $priority);
         }
 
-        $url = self::$API_URL . '/api/notifications/add/' . $streamKey;
+        $url = self::$API_URL . '/api/v1/stream-tokens/' . $streamKey . '/notifications';
 
         $data = [
             'title' => $title,
