@@ -13,7 +13,7 @@ class Notimy
      */
     public static $API_URL = 'https://notimy.com';
 
-    private array $priorityLevels = ['info', 'warn', 'error', 'critical'];
+    private array $priorityLevels = [0, 1, 2, 3];
 
     /**
      * Notimy authorization token
@@ -42,7 +42,7 @@ class Notimy
         string $streamKey,
         string $title,
         string $body,
-        string $priority = 'info',
+        int $priority = 0,
         array $tags = []
     ): mixed
     {
